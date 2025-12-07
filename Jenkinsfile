@@ -12,7 +12,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main', url: "${GIT_URL}"
-        script { echo "Branch: ${env.BRANCH_NAME ?: 'main'}" }
+        script { echo "Branch: ${env.BRANCH_NAME ?: 'master'}" }
       }
     }
 
