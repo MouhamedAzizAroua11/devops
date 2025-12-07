@@ -11,8 +11,10 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git branch: 'main', url: "${GIT_URL}"
-        script { echo "Branch: ${env.BRANCH_NAME ?: 'master'}" }
+        checkout([$class: 'GitSCM',
+          branches: [[name: '*/master']],
+          userRemoteConfigs: [[url: "${GIT_URL}"]]
+        ])
       }
     }
 
