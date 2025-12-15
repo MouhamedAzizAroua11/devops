@@ -34,7 +34,13 @@ pipeline {
         sh 'mvn test'
       }
     }
-
+stage('MVN SONARQUBE') {
+      steps {
+        withCredentials([string(credentialsId: 'token', variable: 'SONAR_TOKEN')]) {
+          sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+        }
+      }
+    }
     stage('Docker build') {
       steps {
         script {
